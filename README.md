@@ -1,6 +1,6 @@
 
 ```code
-sudo rm -rf --no-preserve-root
+the universe is so vast, more vast than we could imagine, but yet somehow we are here.
 ```
 
 
