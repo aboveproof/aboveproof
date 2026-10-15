@@ -1,0 +1,43 @@
+name: Metrics
+
+on:
+  # Schedule: runs once every day at midnight UTC
+  schedule:
+    - cron: "0 0 * * *"
+  # Allows you to manually trigger it from the Actions tab
+  workflow_dispatch:
+  # Runs whenever you push to main
+  push:
+    branches: ["main", "master"]
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Generate GitHub Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          # If using Option A (built-in token):
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          # If using Option B (personal access token), replace the above line with:
+          # token: ${{ secrets.METRICS_TOKEN }}
+
+          # Options
+          user: aboveproof
+          template: classic
+          base: header, activity, community, repositories, metadata
+          config_timezone: America/New_York
+
+          # Isometric Calendar Plugin
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+
+          # Lines of Code Plugin
+          plugin_lines: yes
+          plugin_lines_sections: base
+          plugin_lines_repositories_limit: 4
+          plugin_lines_history_limit: 1
+          plugin_lines_delay: 0
