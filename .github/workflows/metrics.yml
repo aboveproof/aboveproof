@@ -16,7 +16,7 @@ jobs:
         with:
           # The repository token is sufficient for this public profile and is
           # automatically provided and rotated by GitHub Actions.
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.METRICS_TOKEN }}
 
           # Options
           user: aboveproof
