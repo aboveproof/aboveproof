@@ -1,4 +1,4 @@
-<h1 align="left">Hi</h1>
+<h1 align="left">Hi, I like making things and space.</h1>
 
 <p align="center"><em>“The universe is so vast, more vast than we could imagine, but yet somehow we are here.”</em></p>
 
