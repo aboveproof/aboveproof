@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260" role="img" aria-label="aboveproof — I make things and wonder about the universe.">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="52%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#121629"/>
+    </linearGradient>
+
+    <radialGradient id="nebulaA" cx="78%" cy="38%" r="42%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#3b82f6" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="nebulaB" cx="62%" cy="82%" r="36%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#1d4ed8" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#0d1117" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e0f2fe" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#79c0ff" stop-opacity="0.85"/>
+      <stop offset="70%" stop-color="#a371f7" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#a371f7" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#30363d"/>
+      <stop offset="45%" stop-color="#3b4d6b"/>
+      <stop offset="75%" stop-color="#6e40c9" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#30363d"/>
+    </linearGradient>
+
+    <linearGradient id="accentText" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#79c0ff"/>
+      <stop offset="55%" stop-color="#a5b4fc"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+
+    <linearGradient id="orbitStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.45"/>
+      <stop offset="50%" stop-color="#a371f7" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#79c0ff" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <clipPath id="cardClip">
+      <rect x="0.75" y="0.75" width="898.5" height="258.5" rx="14"/>
+    </clipPath>
+  </defs>
+
+  <style>
+    .sans {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    .twinkle-a { animation: twinkle 3.6s ease-in-out infinite; }
+    .twinkle-b { animation: twinkle 5.1s ease-in-out 1.4s infinite; }
+    .twinkle-c { animation: twinkle 4.4s ease-in-out 2.7s infinite; }
+    .pulse { animation: pulse 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .spin-slow { animation: spin 28s linear infinite; transform-origin: 730px 130px; }
+    .spin-rev { animation: spinRev 19s linear infinite; transform-origin: 730px 130px; }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.25; }
+      50% { opacity: 0.95; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.82; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinRev {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+  </style>
+
+  <g clip-path="url(#cardClip)">
+    <!-- Canvas & Nebulae -->
+    <rect width="900" height="260" fill="url(#bg)"/>
+    <rect width="900" height="260" fill="url(#nebulaA)"/>
+    <rect width="900" height="260" fill="url(#nebulaB)"/>
+
+    <!-- Subtle coordinate grid lines -->
+    <g stroke="#30363d" stroke-opacity="0.16" stroke-width="1">
+      <line x1="0" y1="65" x2="900" y2="65"/>
+      <line x1="0" y1="195" x2="900" y2="195"/>
+      <line x1="590" y1="0" x2="590" y2="260"/>
+    </g>
+
+    <!-- Starfield -->
+    <g fill="#e6edf3">
+      <circle cx="48" cy="34" r="1.1" class="twinkle-a"/>
+      <circle cx="132" cy="22" r="0.9" opacity="0.45"/>
+      <circle cx="244" cy="38" r="1.2" class="twinkle-b"/>
+      <circle cx="368" cy="24" r="0.8" opacity="0.5"/>
+      <circle cx="465" cy="46" r="1.3" class="twinkle-c"/>
+      <circle cx="534" cy="28" r="1.0" class="twinkle-a"/>
+      <circle cx="615" cy="40" r="1.4" class="twinkle-b"/>
+      <circle cx="672" cy="22" r="0.9" opacity="0.55"/>
+      <circle cx="812" cy="34" r="1.5" class="twinkle-a"/>
+      <circle cx="864" cy="68" r="1.1" class="twinkle-c"/>
+      <circle cx="848" cy="196" r="1.3" class="twinkle-b"/>
+      <circle cx="792" cy="232" r="1.0" opacity="0.5"/>
+      <circle cx="640" cy="224" r="1.2" class="twinkle-a"/>
+      <circle cx="556" cy="236" r="0.9" class="twinkle-c"/>
+      <circle cx="428" cy="234" r="1.1" opacity="0.4"/>
+      <circle cx="290" cy="242" r="0.9" class="twinkle-b"/>
+      <circle cx="96" cy="232" r="1.0" opacity="0.35"/>
+      <circle cx="598" cy="112" r="1.0" class="twinkle-c"/>
+      <circle cx="852" cy="128" r="0.9" opacity="0.5"/>
+      <circle cx="660" cy="178" r="1.1" class="twinkle-b"/>
+    </g>
+
+    <!-- Constellation accent (upper-mid right) -->
+    <g stroke="#79c0ff" stroke-opacity="0.22" stroke-width="0.9" fill="none">
+      <polyline points="534,28 578,56 615,40 652,64"/>
+    </g>
+    <g fill="#79c0ff">
+      <circle cx="534" cy="28" r="1.6" opacity="0.7"/>
+      <circle cx="578" cy="56" r="1.8" opacity="0.85"/>
+      <circle cx="615" cy="40" r="1.6" opacity="0.7"/>
+      <circle cx="652" cy="64" r="1.4" opacity="0.6"/>
+    </g>
+
+    <!-- Right-side Orbital Observatory -->
+    <g>
+      <!-- Outer static orbital rings -->
+      <ellipse cx="730" cy="130" rx="112" ry="44" transform="rotate(-24 730 130)" fill="none" stroke="url(#orbitStroke)" stroke-width="1.2"/>
+      <ellipse cx="730" cy="130" rx="84" ry="84" fill="none" stroke="#58a6ff" stroke-opacity="0.16" stroke-width="1" stroke-dasharray="3 5"/>
+      <ellipse cx="730" cy="130" rx="54" ry="54" fill="none" stroke="#a371f7" stroke-opacity="0.28" stroke-width="1"/>
+      <ellipse cx="730" cy="130" rx="124" ry="124" fill="none" stroke="#30363d" stroke-opacity="0.4" stroke-width="0.8"/>
+
+      <!-- Orbiting satellites -->
+      <g class="spin-slow">
+        <circle cx="814" cy="130" r="3.4" fill="#79c0ff"/>
+        <circle cx="814" cy="130" r="7.5" fill="#79c0ff" opacity="0.22"/>
+      </g>
+      <g class="spin-rev">
+        <circle cx="730" cy="76" r="2.8" fill="#c084fc"/>
+        <circle cx="730" cy="76" r="6.5" fill="#c084fc" opacity="0.22"/>
+      </g>
+
+      <!-- Glowing star core -->
+      <circle cx="730" cy="130" r="28" fill="url(#coreGlow)" class="pulse"/>
+      <circle cx="730" cy="130" r="6.5" fill="#f0f6fc"/>
+      <!-- 4-point star flare -->
+      <path d="M730 112 L732.2 127.8 L748 130 L732.2 132.2 L730 148 L727.8 132.2 L712 130 L727.8 127.8 Z" fill="#e0f2fe" opacity="0.88"/>
+    </g>
+
+    <!-- Left-side Editorial Content -->
+    <g transform="translate(46, 44)">
+      <!-- Eyebrow pill -->
+      <rect x="0" y="0" width="194" height="24" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+      <circle cx="14" cy="12" r="3.5" fill="#58a6ff" class="twinkle-a"/>
+      <text x="26" y="16" class="mono" font-size="11" font-weight="600" fill="#8b949e" letter-spacing="1.4">ABOVEPROOF · RICO</text>
+
+      <!-- Main headline -->
+      <text x="0" y="66" class="sans" font-size="31" font-weight="700" fill="#f0f6fc" letter-spacing="-0.6">I make things and wonder</text>
+      <text x="0" y="102" class="sans" font-size="31" font-weight="700" fill="url(#accentText)" letter-spacing="-0.6">about the universe.</text>
+
+      <!-- Signature quote -->
+      <text x="0" y="136" class="sans" font-size="13" font-style="italic" fill="#8b949e">“The universe is so vast, more vast than we could imagine, but yet somehow we are here.”</text>
+
+      <!-- Micro tech tags -->
+      <g transform="translate(0, 158)" class="mono" font-size="11">
+        <rect x="0" y="0" width="90" height="24" rx="6" fill="#161b22" stroke="#263348" stroke-width="1"/>
+        <text x="45" y="16" text-anchor="middle" fill="#79c0ff">TypeScript</text>
+
+        <rect x="98" y="0" width="66" height="24" rx="6" fill="#161b22" stroke="#263348" stroke-width="1"/>
+        <text x="131" y="16" text-anchor="middle" fill="#a5b4fc">Python</text>
+
+        <rect x="172" y="0" width="106" height="24" rx="6" fill="#161b22" stroke="#2f2747" stroke-width="1"/>
+        <text x="225" y="16" text-anchor="middle" fill="#c084fc">Desktop Apps</text>
+
+        <rect x="286" y="0" width="124" height="24" rx="6" fill="#161b22" stroke="#263348" stroke-width="1"/>
+        <text x="348" y="16" text-anchor="middle" fill="#7ee787">Discord Tooling</text>
+
+        <rect x="418" y="0" width="52" height="24" rx="6" fill="#161b22" stroke="#2f2747" stroke-width="1"/>
+        <text x="444" y="16" text-anchor="middle" fill="#79c0ff">MCP</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Crisp Outer Border -->
+  <rect x="0.75" y="0.75" width="898.5" height="258.5" rx="14" fill="none" stroke="url(#borderGrad)" stroke-width="1.2"/>
+</svg>
