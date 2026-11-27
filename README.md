@@ -6,12 +6,12 @@
 
 ---
 
-### Things I've made
+### Projects
 
-- [**BadgeFarmer**](https://github.com/aboveproof/BadgeFarmer) — Equicord plugin that automates progression for Discord badges
-- [**Vela**](https://github.com/aboveproof/Vela) — Fast, open-source desktop SSH & SFTP client
-- [**nighty-docs**](https://github.com/aboveproof/nighty-docs) & [**nighty-docs-mcp**](https://github.com/aboveproof/nighty-docs-mcp) — Official Nighty documentation and a read-only MCP server for searching it
-- [**Nighty-VC-Manager**](https://github.com/aboveproof/Nighty-VC-Manager) — Voice controls, automation, and session tracking
+- [**BadgeFarmer**](https://github.com/aboveproof/BadgeFarmer): Equicord plugin for Discord badge progression.
+- [**Vela**](https://github.com/aboveproof/Vela): Desktop SSH and SFTP client.
+- [**nighty-docs**](https://github.com/aboveproof/nighty-docs) & [**nighty-docs-mcp**](https://github.com/aboveproof/nighty-docs-mcp): Nighty documentation and an MCP server to search it.
+- [**Nighty-VC-Manager**](https://github.com/aboveproof/Nighty-VC-Manager): Voice channel controls and session tracking for Nighty.
 
 ---
 
