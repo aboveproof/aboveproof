@@ -19,18 +19,18 @@
 ```text
 aboveproof@github
 ────────────────────────────────────────────────────────────
-  repos          11 public
-  lines of code  36,639
+  repos          17 total (11 public, 6 private)
+  lines of code  138,430 (36,813 public, 101,617 private)
   activity       59 stars  ·  3 followers  ·  53 recent commits
   latest push    BadgeFarmer (TypeScript)
 
   languages (by lines of code)
-  Python          15,306 loc   █████████░░░░░░░░░░░░░   41.8%
-  TypeScript      13,040 loc   ████████░░░░░░░░░░░░░░   35.6%
-  Rust             4,792 loc   ███░░░░░░░░░░░░░░░░░░░   13.1%
-  CSS              1,875 loc   █░░░░░░░░░░░░░░░░░░░░░    5.1%
-  JavaScript       1,550 loc   █░░░░░░░░░░░░░░░░░░░░░    4.2%
-  HTML                76 loc   ░░░░░░░░░░░░░░░░░░░░░░    0.2%
+  Python          68,330 loc   ███████████░░░░░░░░░░░   49.4%
+  JavaScript      45,803 loc   ███████░░░░░░░░░░░░░░░   33.1%
+  TypeScript      13,865 loc   ██░░░░░░░░░░░░░░░░░░░░   10.0%
+  Rust             4,792 loc   █░░░░░░░░░░░░░░░░░░░░░    3.5%
+  CSS              4,184 loc   █░░░░░░░░░░░░░░░░░░░░░    3.0%
+  HTML               744 loc   ░░░░░░░░░░░░░░░░░░░░░░    0.5%
 ```
 <!--END_SECTION:stats-->
 
