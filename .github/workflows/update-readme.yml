@@ -4,6 +4,13 @@ on:
   schedule:
     - cron: "0 */6 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - dev
+    paths:
+      - ".github/scripts/update-readme.mjs"
+      - ".github/workflows/update-readme.yml"
 
 jobs:
   update:
@@ -17,8 +24,9 @@ jobs:
         with:
           node-version: 22
 
-      - name: Update stats block
+      - name: Count lines of code and update stats block
         env:
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.repository_owner }}
         run: node .github/scripts/update-readme.mjs
