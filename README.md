@@ -1,10 +1,8 @@
+<img align="right" src="https://komarev.com/ghpvc/?username=aboveproof&color=blue&style=flat" alt="Profile views" />
+
 <h1 align="left">I make things and wonder about the universe.</h1>
 
 <p align="center"><em>“The universe is so vast, more vast than we could imagine, but yet somehow we are here.”</em></p>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=aboveproof&color=blue&style=flat" alt="Profile views" />
-</p>
 
 <!--START_SECTION:stats-->
 ```text
