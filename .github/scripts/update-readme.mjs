@@ -124,7 +124,7 @@ async function fetchAllRepos() {
     if (batch.length < 100) break;
   }
 
-  return all.filter((r) => !r.fork);
+  return all;
 }
 
 function countDirLines(dir) {
@@ -183,7 +183,7 @@ async function countRepoLines(repo, workRoot) {
 
   try {
     await execFileAsync("git", args, {
-      timeout: 30_000,
+      timeout: 60_000,
       env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
     });
     return countDirLines(targetDir);
