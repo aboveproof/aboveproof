@@ -1,7 +1,7 @@
 import { execFile } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { basename, extname, join } from "node:path";
+import { extname, join } from "node:path";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
@@ -47,48 +47,48 @@ const SKIP_FILES = new Set([
   "github-metrics.svg",
 ]);
 
-const EXT_TO_LANG = {
-  ".ts": "TypeScript",
-  ".tsx": "TypeScript",
-  ".mts": "TypeScript",
-  ".cts": "TypeScript",
-  ".js": "JavaScript",
-  ".jsx": "JavaScript",
-  ".mjs": "JavaScript",
-  ".cjs": "JavaScript",
-  ".py": "Python",
-  ".pyw": "Python",
-  ".html": "HTML",
-  ".htm": "HTML",
-  ".css": "CSS",
-  ".scss": "CSS",
-  ".sass": "CSS",
-  ".less": "CSS",
-  ".rs": "Rust",
-  ".go": "Go",
-  ".c": "C",
-  ".h": "C",
-  ".cpp": "C++",
-  ".cc": "C++",
-  ".cxx": "C++",
-  ".hpp": "C++",
-  ".cs": "C#",
-  ".java": "Java",
-  ".kt": "Kotlin",
-  ".kts": "Kotlin",
-  ".swift": "Swift",
-  ".rb": "Ruby",
-  ".php": "PHP",
-  ".lua": "Lua",
-  ".sh": "Shell",
-  ".bash": "Shell",
-  ".zsh": "Shell",
-  ".ps1": "PowerShell",
-  ".sql": "SQL",
-  ".vue": "Vue",
-  ".svelte": "Svelte",
-  ".astro": "Astro",
-};
+const CODE_EXTS = new Set([
+  ".ts",
+  ".tsx",
+  ".mts",
+  ".cts",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".cjs",
+  ".py",
+  ".pyw",
+  ".html",
+  ".htm",
+  ".css",
+  ".scss",
+  ".sass",
+  ".less",
+  ".rs",
+  ".go",
+  ".c",
+  ".h",
+  ".cpp",
+  ".cc",
+  ".cxx",
+  ".hpp",
+  ".cs",
+  ".java",
+  ".kt",
+  ".kts",
+  ".swift",
+  ".rb",
+  ".php",
+  ".lua",
+  ".sh",
+  ".bash",
+  ".zsh",
+  ".ps1",
+  ".sql",
+  ".vue",
+  ".svelte",
+  ".astro",
+]);
 
 async function gh(path) {
   const res = await fetch(`https://api.github.com${path}`, { headers });
@@ -127,7 +127,7 @@ async function fetchAllRepos() {
   return all.filter((r) => !r.fork);
 }
 
-function countDirLines(dir, langTotals) {
+function countDirLines(dir) {
   let total = 0;
   let entries;
   try {
@@ -142,7 +142,7 @@ function countDirLines(dir, langTotals) {
 
     if (entry.isDirectory()) {
       if (SKIP_DIRS.has(entry.name)) continue;
-      total += countDirLines(fullPath, langTotals);
+      total += countDirLines(fullPath);
       continue;
     }
 
@@ -151,23 +151,16 @@ function countDirLines(dir, langTotals) {
     if (SKIP_FILES.has(lower) || lower.endsWith(".min.js") || lower.endsWith(".min.css")) {
       continue;
     }
-
-    const lang = EXT_TO_LANG[extname(lower)];
-    if (!lang) continue;
+    if (!CODE_EXTS.has(extname(lower))) continue;
 
     try {
       const buf = readFileSync(fullPath);
       if (buf.length === 0 || buf.length > 2 * 1024 * 1024) continue;
-      if (buf.includes(0)) continue; // skip binary files
+      if (buf.includes(0)) continue;
 
       const text = buf.toString("utf8");
-      let lines = 0;
       for (const line of text.split(/\r?\n/)) {
-        if (line.trim().length > 0) lines++;
-      }
-      if (lines > 0) {
-        total += lines;
-        langTotals.set(lang, (langTotals.get(lang) || 0) + lines);
+        if (line.trim().length > 0) total++;
       }
     } catch {
       // ignore unreadable files
@@ -178,7 +171,7 @@ function countDirLines(dir, langTotals) {
 }
 
 async function countRepoLines(repo, workRoot) {
-  if (!repo.size) return { lines: 0, langs: new Map() };
+  if (!repo.size) return 0;
 
   const targetDir = join(workRoot, repo.name);
   const args = [];
@@ -193,12 +186,10 @@ async function countRepoLines(repo, workRoot) {
       timeout: 30_000,
       env: { ...process.env, GIT_TERMINAL_PROMPT: "0" },
     });
-    const langs = new Map();
-    const lines = countDirLines(targetDir, langs);
-    return { lines, langs };
+    return countDirLines(targetDir);
   } catch (err) {
     console.warn(`Skipped ${repo.private ? "(private repo)" : repo.name}: ${err.message}`);
-    return { lines: 0, langs: new Map() };
+    return 0;
   } finally {
     rmSync(targetDir, { recursive: true, force: true });
   }
@@ -215,19 +206,6 @@ async function mapWithConcurrency(items, limit, fn) {
   }
   await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
   return results;
-}
-
-function bar(pct, width = 22) {
-  const filled = Math.round((pct / 100) * width);
-  return "█".repeat(filled) + "░".repeat(Math.max(0, width - filled));
-}
-
-function padRight(str, len) {
-  return str.length >= len ? str.slice(0, len) : str + " ".repeat(len - str.length);
-}
-
-function padLeft(str, len) {
-  return str.length >= len ? str : " ".repeat(len - str.length) + str;
 }
 
 function fmtNum(n) {
@@ -248,30 +226,19 @@ async function main() {
   const workRoot = mkdtempSync(join(tmpdir(), "aboveproof-loc-"));
   let publicLines = 0;
   let privateLines = 0;
-  const langLinesMap = new Map();
 
   try {
     const counts = await mapWithConcurrency(ownRepos, 4, (repo) => countRepoLines(repo, workRoot));
     for (let i = 0; i < ownRepos.length; i++) {
-      const repo = ownRepos[i];
-      const { lines, langs } = counts[i];
-      if (repo.private) privateLines += lines;
-      else publicLines += lines;
-
-      for (const [lang, count] of langs.entries()) {
-        langLinesMap.set(lang, (langLinesMap.get(lang) || 0) + count);
-      }
+      if (ownRepos[i].private) privateLines += counts[i];
+      else publicLines += counts[i];
     }
   } finally {
     rmSync(workRoot, { recursive: true, force: true });
   }
 
   const totalLines = publicLines + privateLines;
-  const topLangs = [...langLinesMap.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 6);
 
-  // Recent push activity (last 30 days from public events)
   const cutoff = Date.now() - 30 * 24 * 60 * 60 * 1000;
   const recentPushes = events.filter(
     (e) => e.type === "PushEvent" && new Date(e.created_at).getTime() >= cutoff
@@ -281,7 +248,6 @@ async function main() {
     0
   );
 
-  // Most recently pushed public non-profile repo (never expose private repo names)
   const latestPublicRepo = publicRepos.find(
     (r) => r.name.toLowerCase() !== USERNAME.toLowerCase()
   );
@@ -302,12 +268,6 @@ async function main() {
     ...(recentCommits > 0 ? [`${recentCommits} recent commits`] : []),
   ];
 
-  const langRows = topLangs.map(([lang, count]) => {
-    const pct = totalLines > 0 ? (count / totalLines) * 100 : 0;
-    const countLabel = `${fmtNum(count)} loc`;
-    return `  ${padRight(lang, 13)} ${padLeft(countLabel, 12)}   ${bar(pct)}  ${padLeft(pct.toFixed(1), 5)}%`;
-  });
-
   const lines = [
     "```text",
     `${USERNAME}@github`,
@@ -318,9 +278,6 @@ async function main() {
     ...(latestPublicRepo
       ? [`  latest push    ${latestPublicRepo.name} (${latestPublicRepo.language || "misc"})`]
       : []),
-    "",
-    "  languages (by lines of code)",
-    ...langRows,
     "```",
   ];
 
