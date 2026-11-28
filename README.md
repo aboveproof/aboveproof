@@ -10,10 +10,10 @@
 ```text
 aboveproof@github
 ────────────────────────────────────────────────────────────
-  repos          17 total (11 public, 6 private)
-  lines of code  138,430 (36,813 public, 101,617 private)
-  activity       59 stars  ·  3 followers  ·  53 recent commits
-  latest push    BadgeFarmer (TypeScript)
+  repos          25 total (19 public, 6 private)
+  lines of code  441,815 (340,198 public, 101,617 private)
+  activity       62 stars  ·  3 followers  ·  53 recent commits
+  latest push    NitroSniper (TypeScript)
 ```
 <!--END_SECTION:stats-->
 
