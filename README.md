@@ -6,6 +6,17 @@
   <img src="https://komarev.com/ghpvc/?username=aboveproof&color=blue&style=flat" alt="Profile views" />
 </p>
 
+<!--START_SECTION:stats-->
+```text
+aboveproof@github
+────────────────────────────────────────────────────────────
+  repos          25 total (19 public, 6 private)
+  lines of code  441,815 (340,198 public, 101,617 private)
+  activity       62 stars  ·  3 followers  ·  53 recent commits
+  latest push    NitroSniper (TypeScript)
+```
+<!--END_SECTION:stats-->
+
 <p align="center">
   <img src="https://github-stats-extended.vercel.app/api?username=aboveproof&rank_icon=percentile&hide_title=true&show_icons=true&include_all_commits=true&theme=dark_github" alt="GitHub statistics" height="170" />
   <img src="https://github-stats-extended.vercel.app/api/top-langs?username=aboveproof&layout=compact&langs_count=20&theme=dark_github" alt="Most used languages" height="170" />
